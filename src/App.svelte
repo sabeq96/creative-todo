@@ -30,6 +30,7 @@ function fetchImage() {
     }).write()
 
     todos = db.get('todos');
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   let menuItems = [
