@@ -61,6 +61,7 @@ button:focus {
 	position: fixed !important;
 	top: inherit !important;
 	bottom: 10px !important;
-	left: 0 !important;
-	transform: none !important;
+	/* left: 0 !important;
+	right: 0 !important; */
+	transform: translate(-50%, 0) translate(0px, 0px) !important;
 }

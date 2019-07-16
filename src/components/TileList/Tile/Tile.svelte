@@ -1,6 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
   import { BookmarkIcon, ImageIcon, Trash2Icon, CheckmarkIcon } from 'svelte-eva-icons'
+  import moment from 'moment';
 
   export let id;
   export let date;
@@ -42,8 +43,8 @@ const dispatch = createEventDispatcher();
     dispatch('tileComplete', { id })
   }
 
-  $: day = new Date(date).getDate().toString().padStart(2, 0);
-  $: month = (new Date(date).getMonth() + 1).toString().padStart(2, 0);
+  $: day = moment(date, 'YYYYMMDD').format('DD'); 
+  $: month = moment(date, 'YYYYMMDD').format('MM');
 </script>
 
 <div class="wrapper">

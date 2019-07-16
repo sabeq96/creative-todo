@@ -1,10 +1,19 @@
 <script>
   import TileList from '../../components/TileList/TileList.svelte'
-  export let activeMenu;
+  import moment from 'moment';
+  export let activeMenu = 'today';
   export let todos = [];
   export let fetchImage = () => {};
 
-  const tiles = todos.value()
+  const filterMap = {
+    today: ({date}) => moment(date, "YYYYMMDD").isSame(moment(), 'day'),
+    tomorrow: ({date}) => moment(date, "YYYYMMDD").isSame(moment().add(1, 'day'), 'day'),
+    upcomming: ({date}) => moment(date, "YYYYMMDD").isAfter(moment().add(1, 'day'), 'day'),
+    bookmarks: ({bookmark}) => bookmark,
+  }
+
+  $: tiles = todos.filter(filterMap[activeMenu]).value()
+
   function bookmarkCheck(e) {
     const { id, bookmark } = e.detail;
     todos.update()
@@ -21,6 +30,8 @@
         imageUrl: await fetchImage()
       })
       .write()
+
+      tiles = todos.filter(filterMap[activeMenu]).value()
   }
 </script>
 

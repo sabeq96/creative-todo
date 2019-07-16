@@ -1,6 +1,5 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-  import DateUtils from '../../utils/DateUtils'
   export let menuItems = [];
 
   const dispatch = createEventDispatcher();

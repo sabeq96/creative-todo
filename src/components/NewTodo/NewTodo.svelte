@@ -2,8 +2,10 @@
   import DatePicker from 'svelte-calendar';
 	import { createEventDispatcher } from 'svelte';
   import { PlusIcon, CalendarIcon, TextIcon } from 'svelte-eva-icons'
+  import moment from 'moment';
+
   let value = '';
-  let dateSelected = new Date();
+  let dateSelected;
   let isTextAreaOpen = false;
 
   document.addEventListener('click', (e) => {
@@ -24,10 +26,10 @@
   function onAdd () {
     dispatch('todoAdd', {
       value,
-      date: dateSelected,
+      date: moment(dateSelected, 'YYYYMMDD').format('YYYYMMDD'),
     })
     value = '';
-    dateSelected = new Date();
+    dateSelected = null;
   }
 </script>
 

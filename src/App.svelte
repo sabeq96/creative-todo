@@ -4,7 +4,6 @@
   import LocalStorage from 'lowdb/adapters/LocalStorage'
   import uuid from 'uuid/v4';
 
-  import { Router, Link, Route } from "svelte-routing";
   import Home from "./pages/Home/index.svelte";
   import Sidebar from './components/Sidebar/Sidebar.svelte'
   import NewTodo from './components/NewTodo/NewTodo.svelte'
@@ -13,7 +12,7 @@
   db.defaults({ todos: [] }).write();
   let todos = db.get('todos'); 
 
-  function fetchImage() {
+function fetchImage() {
     return fetch('https://source.unsplash.com/random/150x300')
       .then((res) => res.url)
       .catch(console.log)
@@ -29,6 +28,8 @@
       imageUrl: await fetchImage(),
       bookmark: false,
     }).write()
+
+    todos = db.get('todos');
   }
 
   let menuItems = [
@@ -54,12 +55,8 @@
   function setActiveMenuItem (e) { activeMenu = e.detail.id}
 </script>
 
-<Router url="">
 <Sidebar {menuItems} on:menuClick={setActiveMenuItem} />
 <NewTodo on:todoAdd={setTodo} />
   <div>
-    <Route path="/">
-      <Home {activeMenu} {todos} {fetchImage} />
-    </Route>
+    <Home {activeMenu} {todos} {fetchImage} />
   </div>
-</Router>
