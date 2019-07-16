@@ -5,7 +5,7 @@
   import moment from 'moment';
 
   let value = '';
-  let dateSelected;
+  let dateSelected = new Date();
   let isTextAreaOpen = false;
 
   document.addEventListener('click', (e) => {
@@ -29,7 +29,7 @@
       date: moment(dateSelected, 'YYYYMMDD').format('YYYYMMDD'),
     })
     value = '';
-    dateSelected = null;
+    dateSelected = new Date();
   }
 </script>
 
