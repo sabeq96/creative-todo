@@ -30,7 +30,9 @@ function fetchImage() {
     }).write()
 
     todos = db.get('todos');
-    window.scrollTo(0, document.body.scrollHeight);
+
+    const tileHeight = document.querySelector('.listTile').clientHeight;
+    window.scrollTo(0, document.body.scrollHeight + tileHeight);
   }
 
   let menuItems = [
